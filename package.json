@@ -1,0 +1,29 @@
+{
+  "name": "bunny-girl-bot",
+  "version": "1.0.0",
+  "description": "![](assets/menu-banner.png)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adan292/Bunny-girl-BOT.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/adan292/Bunny-girl-BOT/issues"
+  },
+  "homepage": "https://github.com/adan292/Bunny-girl-BOT#readme",
+  "dependencies": {
+    "@whiskeysockets/baileys": "^7.0.0-rc14",
+    "pino": "^10.3.1",
+    "qrcode-terminal": "^0.12.0"
+"scripts": {
+  "qr": "node index.js qr",
+  "code": "node index.js code"
+}
+
