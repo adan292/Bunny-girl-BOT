@@ -16,16 +16,24 @@ async function startBunnyBot() {
         browser: ['BunnyGirl-Bot', 'Chrome', '1.0.0']
     });
 
-    // MODO 2: Código de vinculación (Pairing Code)
-    if (method === 'code' && !sock.authState.creds.registered) {
-        console.clear();
-        const phoneNumber = await question('🐰 Ingrese su número de WhatsApp con código de país (Ej: 58412xxxxxxx):\n> ');
-        const cleanNumber = phoneNumber.replace(/[^0-9]/g, '');
-        
-        await delay(3000);
-        const code = await sock.requestPairingCode(cleanNumber);
-        console.log(`\n✨ Tu código de vinculación para Bunny girl-bot es: \x1b[32m${code}\x1b[0m\n`);
+// REMPLAZA la sección de "if (method === 'code'..." por esto:
+if (method === 'code' && !sock.authState.creds.registered) {
+    console.clear();
+    // Leerá el número directamente desde la configuración del hosting
+    const phoneNumber = process.env.NUMERO_BOT; 
+    
+    if (!phoneNumber) {
+        console.log("❌ ERROR: No has configurado la variable NUMERO_BOT en las Variables de Entorno de HidenCloud.");
+        process.exit(1);
     }
+
+    const cleanNumber = phoneNumber.replace(/[^0-9]/g, '');
+    console.log(`⏳ Solicitando código para el número: ${cleanNumber}...`);
+    
+    await delay(3000);
+    const code = await sock.requestPairingCode(cleanNumber);
+    console.log(`\n✨ Tu código de vinculación para Bunny girl-bot es: \x1b[32m${code}\x1b[0m\n`);
+}
 
     sock.ev.on('creds.update', saveCreats);
 
